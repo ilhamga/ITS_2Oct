@@ -20,6 +20,7 @@ class_names = open(args.label, "r").readlines()
 
 # Load the image
 image = cv2.imread(args.input)
+orgimg = image
 
 # Resize the raw image into (224-height,224-width) pixels
 image = cv2.resize(image, (224, 224), interpolation=cv2.INTER_AREA)
@@ -37,5 +38,6 @@ class_name = class_names[index]
 confidence_score = prediction[0][index]
 
 # Print prediction and confidence score
-print("Class:", class_name[2:], end="")
-print("Confidence Score:", str(np.round(confidence_score * 100))[:-2], "%")
+cv2.putText(orgimg, class_name[2:-1], (5 , 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,0), 2, cv2.LINE_AA)
+cv2.putText(orgimg, str(np.round(confidence_score * 100))[:-2] + "%", (5 , 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,0), 2, cv2.LINE_AA)
+cv2.imwrite("simple_model_result.jpg", orgimg)
