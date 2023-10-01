@@ -10,3 +10,6 @@
 [submodule "modules/optimize_quantization"]
 	path = modules/optimize_quantization
 	url = https://github.com/superintelligence-lab/tensorflow_model_optimization.git
+[submodule "modules/optimize-nanodet"]
+	path = modules/optimize-nanodet
+	url = https://github.com/RangiLyu/nanodet
