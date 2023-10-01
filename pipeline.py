@@ -3,6 +3,7 @@ import os
 import argparse
 import numpy as np
 from tqdm import tqdm
+import time
 
 # YoloFace imports
 import sys
@@ -52,6 +53,7 @@ frame_number = 0
 
 # Get the total number of frames in the video
 total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+total_det_duration = 0
 
 with tqdm(total=total_frames, unit="frames") as progress_bar:
     while True:
@@ -65,7 +67,11 @@ with tqdm(total=total_frames, unit="frames") as progress_bar:
         # Save the frame as an image with the naming convention
         frame_filename = os.path.join(output_dir, f'{os.path.splitext(os.path.basename(args.video_path))[0]}_{frame_number}.jpg')
 
+        start_time = time.time()
         face_bboxes, face_points = face_model.predict(frame)
+        total_det_duration += time.time() - start_time
+        
+
         for face_bbox in face_bboxes[0]:
             cv2.rectangle(frame, (face_bbox[0], face_bbox[1]), (face_bbox[2], face_bbox[3]), (255, 0, 0), 2)
             face_frame = frame[face_bbox[1]:face_bbox[3], face_bbox[0]:face_bbox[2]]
@@ -101,3 +107,6 @@ for frame_file in tqdm(frame_files, unit="frames"):
 
 # Release the output video file
 output_video.release()
+
+print(f"Total detection time: {total_det_duration} seconds")
+print(f"Avg detection time: {total_det_duration/total_frames} seconds")
