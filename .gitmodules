@@ -13,3 +13,6 @@
 [submodule "modules/optimize-nanodet"]
 	path = modules/optimize-nanodet
 	url = https://github.com/RangiLyu/nanodet
+[submodule "modules/optimize-pruning"]
+	path = modules/optimize-pruning
+	url = https://github.com/tensorflow/model-optimization.git
