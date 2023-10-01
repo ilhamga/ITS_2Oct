@@ -1,3 +1,15 @@
 [submodule "optimize_nanodet"]
 	path = optimize_nanodet
 	url = https://github.com/RangiLyu/nanodet
+[submodule "modules/yolo_detection"]
+	path = modules/yolo_detection
+	url = https://github.com/ultralytics/yolov5.git
+[submodule "modules/yolo_face_detection"]
+	path = modules/yolo_face_detection
+	url = https://github.com/elyha7/yoloface.git
+[submodule "modules/attractive_scale"]
+	path = modules/attractive_scale
+	url = https://github.com/gustavz/AttractiveNet.git
+[submodule "modules/optimize_quantization"]
+	path = modules/optimize_quantization
+	url = https://github.com/superintelligence-lab/tensorflow_model_optimization.git
